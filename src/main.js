@@ -87,7 +87,7 @@ function checkGuess() {
         if (targetWord[i] === guess) {
           guessedLetters[i] = guess;
           correctGuess = true;
-          timeRemaining = 300
+         
         }
     }
 
@@ -99,7 +99,7 @@ function checkGuess() {
         const scoreElement = document.getElementById('scoreValue');
         scoreElement.textContent = score.toString();
         showResult(`¡Correcto! Has adivinado la palabra: ${targetWord}`);
-        
+        timeRemaining = 300
 
         if (words.length > 1) {
           words.splice(randomIndex, 1);
@@ -138,6 +138,7 @@ function startTimer() {
         gameActive = false;
         revealWord();
         enableRestartButton();
+        document.getElementById('guessButton').classList.toggle('unableButton')
       }
 
       timerElement.textContent = `Tiempo restante: ${getFormattedTime(timeRemaining)}`;
@@ -177,12 +178,14 @@ function enableRestartButton() {
     const restartButton = document.getElementById('restartButton');
     if (restartButton.disabled) {
         restartButton.disabled = false;
+        restartButton.classList.toggle('unableButton')
     }
 }
 
 function disableRestartButton() {
     const restartButton = document.getElementById('restartButton');
     restartButton.disabled = true;
+    restartButton.classList.toggle('unableButton')
 }
 
 function getFormattedTime(seconds) {
