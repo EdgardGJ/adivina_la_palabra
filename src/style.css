@@ -1,16 +1,47 @@
 body {
+    margin: 0;
     text-align: center;
     align-items: center;
     margin: 0;
     width: 100%;
     height: 100vh;
-    background: linear-gradient(to right, rgb(248, 231, 248), rgb(52, 216, 153));
+    background-image: linear-gradient(to bottom, rgba(253, 253, 240, 0.452), rgba(37, 37, 37, 0.5)), url(/img/scrabble.jpg);
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
 }
+section {
+    align-items: center;
+    margin: 0 auto;
+    border: 2px solid black;
+    width: 60vw;
+    padding-bottom: 2em;
+    backdrop-filter: blur(2px);
+}
+
 button {
-    background-color: rgb(47, 179, 196);
+    background-color: rgb(7, 0, 0);
     height: 4vh;
     border-radius: 2vh;
+    color: white;
+    cursor: pointer;
 }
 .unableButton {
-    background-color: rgb(170, 193, 196);
+    background-color: rgb(119, 119, 119);
+    color: rgb(37, 37, 37);
+}
+.unableButton:hover {
+    cursor: no-drop;
+}
+input {
+    border-radius: 1em;
+    outline: none;
+    border: 0;
+}
+input:hover {
+    transform: scale(1.1);
+}
+.run {
+    color: red;
 }

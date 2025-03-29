@@ -17,7 +17,7 @@ async function loadDictionary(filePath) {
         const lines = text.trim().split('\n');
         const cleanedWords = lines.map(line => {
             const parts = line.split(','); // Divide la línea por la coma
-            if (parts.length > 0) {
+            if (parts.length > 1) {
                 const firstPart = parts[0].trim(); // Toma la primera parte y elimina espacios
                 // Eliminar acentos y otros caracteres no deseados (opcional, pero recomendado)
                 return firstPart.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-zA-ZñÑ\s]/g, '');
@@ -131,6 +131,9 @@ function startTimer() {
 
     timeout = setInterval(() => {
       timeRemaining--;
+      if (timeRemaining <= 60) {
+        document.getElementById('timer').classList.toggle('run')
+     }
 
       if (timeRemaining <= 0) {
         clearInterval(timeout);
@@ -138,13 +141,13 @@ function startTimer() {
         gameActive = false;
         revealWord();
         enableRestartButton();
+        document.getElementById('timer').classList.add('run')
         document.getElementById('guessButton').classList.toggle('unableButton')
       }
 
       timerElement.textContent = `Tiempo restante: ${getFormattedTime(timeRemaining)}`;
     }, 1000); // 1 segundo (1000 ms)
 }
-
 
 function enableInput() {
     const guessInput = document.getElementById('guessInput')
@@ -167,6 +170,7 @@ function restartGame() {
     words.splice(0)
     words.push(words)
     startGame()
+    document.getElementById('guessButton').classList.toggle('unableButton')
 }
 
 function revealWord() {
